@@ -4,7 +4,7 @@ class Container{
   
   int BOX_W = 100;
   int BOX_H = 400;
-  int MARGIN_X = 330;
+  int MARGIN_X = 200;
   int MARGIN_Y = 175;
   
   float bby;

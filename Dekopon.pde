@@ -1,11 +1,11 @@
 class Dekopon extends Fruit{
   public Dekopon(float x, float y, Container c){
-    super(x,y,c,40);
-    yoffs = -5;
+    super(x,y,c,80);
+    yoffs = 3;
   }
   
   Fruit createNext(float x, float y){
-    return null;
+    return new Orange(x,y,c);
   }
   
   void show(){

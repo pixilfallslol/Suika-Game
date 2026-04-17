@@ -18,6 +18,8 @@ class Fruit{
   
   float yoffs = 0.0;
   
+  boolean canMerge = true;
+  
   public Fruit(float _x, float _y, Container _c, float _rad){
     x = _x;
     y = _y;
@@ -61,7 +63,7 @@ class Fruit{
       float md = (rad+other.rad)*0.5;
       if(d<md&&d>0){
         // Only the same type and check if its not merged already.
-        if(getClass()==other.getClass()&&!merged&&!other.merged){
+        if(getClass()==other.getClass()&&!merged&&!other.merged&&canMerge&&other.canMerge){
           // spawn pos.
           float nx = (x+other.x)*0.5;
           float ny = (y+other.y)*0.5;

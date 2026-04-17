@@ -43,6 +43,7 @@ class Spawner{
   }
   
   void update(){
+    if(gameOver) return;
     // Make sure mouse doesn't escape container.
     float cx = min(max(mouseX,xMin),xMax);
     x = cx;

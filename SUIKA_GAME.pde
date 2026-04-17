@@ -6,13 +6,17 @@ List<Fruit> fruits;
 
 Spawner s;
 
-String[] IMG_NAMES = {"cherry.png","strawberry.png","grape.png","Dekopon.png"};
+String[] IMG_NAMES = {"cherry.png","strawberry.png","grape.png","Dekopon.png","orange.png","apple.png","pear.png","peach.png","Pineapple.png","Melon.png","Watermelon.png"};
 PImage[] imgs;
+
+boolean gameOver = false;
+boolean canPlace = true;
 
 void setup(){
   ellipseMode(CENTER);
   rectMode(CENTER);
   imageMode(CENTER);
+  textAlign(CENTER);
   cont = new Container(width/2,height/2);
   fruits = new ArrayList<Fruit>(0);
   s = new Spawner(width/2,100,cont);
@@ -28,6 +32,7 @@ void draw(){
   drawContainer();
   drawFruits();
   drawSpawner();
+  drawGameOver();
 }
 
 void drawContainer(){
@@ -65,6 +70,23 @@ void drawFruits(){
   // Render.
   for(int i = 0; i < fruits.size(); i++){
     fruits.get(i).show();
+  }
+  
+  for(int i = 0; i < fruits.size(); i++){
+    Fruit f = fruits.get(i);
+    if(f.onGround&&f.y-f.rad<cont.y-cont.MARGIN_Y-260){
+      gameOver = true;
+    }
+  }
+}
+
+void drawGameOver(){
+  if(gameOver){
+    canPlace = false;
+    textSize(64);
+    fill(0);
+    text("GAME OVER",width/2,height/2);
+    return;
   }
 }
 

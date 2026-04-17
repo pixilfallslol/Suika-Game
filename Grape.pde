@@ -1,6 +1,6 @@
 class Grape extends Fruit{
   public Grape(float x, float y, Container c){
-    super(x,y,c,40);
+    super(x,y,c,60);
     yoffs = -5;
   }
   
