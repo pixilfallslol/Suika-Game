@@ -11,6 +11,9 @@ class Spawner{
   
   boolean debounce = false;
   
+  Fruit currFruit;
+  Fruit nextFruit;
+  
   public Spawner(float _x, float _y, Container _c){
     x = _x;
     y = _y;
@@ -19,14 +22,33 @@ class Spawner{
     xMax = c.x+c.MARGIN_X;
     yMin = 0;
     yMax = c.bby;
+    currFruit = randomFruit(x,y);
+    nextFruit = randomFruit(x,y);
+  }
+  
+  Fruit randomFruit(float x, float y){
+    int r = int(random(3));
+    switch(r){
+      case 0:
+        return new Cherry(x,y,c);
+      
+      case 1:
+        return new Strawberry(x,y,c);
+    }
+    return new Grape(x,y,c);
   }
   
   void update(){
     float cx = min(max(mouseX,xMin),xMax);
     x = cx;
     y = min(max(y,yMin),yMax);
+    currFruit.x = x;
+    currFruit.y = y;
+    currFruit.show();
     if(mousePressed&&!debounce){
-      addFruit(x,y);
+      fruits.add(currFruit);
+      currFruit = nextFruit;
+      nextFruit = randomFruit(x,y);
       debounce = true;
     }
     if(debounce&&!mousePressed){
