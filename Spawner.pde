@@ -6,6 +6,7 @@ class Spawner{
   float yMax;
   float xMin;
   float xMax;
+  float X_MARGIN = 60;
   
   Container c;
   
@@ -18,8 +19,8 @@ class Spawner{
     x = _x;
     y = _y;
     c = _c;
-    xMin = c.x-c.MARGIN_X;
-    xMax = c.x+c.MARGIN_X;
+    xMin = c.x-c.MARGIN_X+X_MARGIN;
+    xMax = c.x+c.MARGIN_X-X_MARGIN;
     yMin = 0;
     yMax = c.bby;
     currFruit = randomFruit(x,y);
@@ -27,18 +28,22 @@ class Spawner{
   }
   
   Fruit randomFruit(float x, float y){
-    int r = int(random(3));
+    int r = int(random(4));
     switch(r){
       case 0:
         return new Cherry(x,y,c);
       
       case 1:
         return new Strawberry(x,y,c);
+      
+      case 3:
+        return new Grape(x,y,c);
     }
-    return new Grape(x,y,c);
+    return new Dekopon(x,y,c);
   }
   
   void update(){
+    // Make sure mouse doesn't escape container.
     float cx = min(max(mouseX,xMin),xMax);
     x = cx;
     y = min(max(y,yMin),yMax);
@@ -47,6 +52,7 @@ class Spawner{
     currFruit.show();
     if(mousePressed&&!debounce){
       fruits.add(currFruit);
+      // Shift queue.
       currFruit = nextFruit;
       nextFruit = randomFruit(x,y);
       debounce = true;

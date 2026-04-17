@@ -1,6 +1,7 @@
 class Strawberry extends Fruit{
   public Strawberry(float x, float y, Container c){
     super(x,y,c,30);
+    yoffs = -10;
   }
   
   Fruit createNext(float x, float y){
@@ -8,7 +9,6 @@ class Strawberry extends Fruit{
   }
   
   void show(){
-    fill(0xff);
-    ellipse(x,y,rad,rad);
+    image(imgs[1],x,y,rad,rad);
   }
 }

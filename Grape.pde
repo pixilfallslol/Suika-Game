@@ -1,14 +1,14 @@
 class Grape extends Fruit{
   public Grape(float x, float y, Container c){
     super(x,y,c,40);
+    yoffs = -5;
   }
   
   Fruit createNext(float x, float y){
-    return null;
+    return new Dekopon(x,y,c);
   }
   
   void show(){
-    fill(0xff);
-    ellipse(x,y,rad,rad);
+    image(imgs[2],x,y,rad,rad);
   }
 }
